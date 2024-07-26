@@ -74,24 +74,30 @@ func (c *Config) Client() (*pagerduty.Client, error) {
 		return nil, fmt.Errorf(invalidCreds)
 	}
 
-	httpClient := &http.Client{
-		Transport: &http.Transport{
-			DialContext: (&net.Dialer{
-				Timeout:   25 * time.Second,
-				KeepAlive: 20 * time.Second,
-			}).DialContext,
-			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{
-					tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-				},
+	transport := &http.Transport{
+		DialContext: (&net.Dialer{
+			Timeout:   25 * time.Second,
+			KeepAlive: 20 * time.Second,
+		}).DialContext,
+		TLSClientConfig: &tls.Config{
+			CipherSuites: []uint16{
+				tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
 			},
-			TLSHandshakeTimeout:   20 * time.Second,
-			MaxIdleConns:          0,
-			MaxIdleConnsPerHost:   500,
-			MaxConnsPerHost:       0,
-			IdleConnTimeout:       1 * time.Minute,
-			ResponseHeaderTimeout: 20 * time.Second,
 		},
+		TLSHandshakeTimeout:   20 * time.Second,
+		MaxIdleConns:          0,
+		MaxIdleConnsPerHost:   500,
+		MaxConnsPerHost:       0,
+		IdleConnTimeout:       1 * time.Minute,
+		ResponseHeaderTimeout: 20 * time.Second,
+	}
+
+	if c.InsecureTls {
+		transport.TLSClientConfig.InsecureSkipVerify = true
+	}
+
+	httpClient := &http.Client{
+		Transport: logging.NewTransport("PagerDuty", transport),
 	}
 
 	apiUrl := c.ApiUrl
