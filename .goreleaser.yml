@@ -44,7 +44,7 @@ signs:
       - "${artifact}"
 release:
   github: 
-    owner: "PagerDuty"
+    owner: "shonun1"
     name: "terraform-provider-pagerduty"
   draft: true
 changelog:

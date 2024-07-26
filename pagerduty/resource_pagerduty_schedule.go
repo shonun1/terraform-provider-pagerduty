@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/PagerDuty/terraform-provider-pagerduty/util"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/retry"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 	"github.com/heimweh/go-pagerduty/pagerduty"
+	"github.com/shonun1/terraform-provider-pagerduty/util"
 )
 
 func resourcePagerDutySchedule() *schema.Resource {

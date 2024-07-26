@@ -68,7 +68,7 @@ func SuppressRFC3339Diff(k, oldTime, newTime string, d *schema.ResourceData) boo
 	return oldT.Equal(newT)
 }
 
-// issue: https://github.com/PagerDuty/terraform-provider-pagerduty/issues/200
+// issue: https://github.com/shonun1/terraform-provider-pagerduty/issues/200
 // The start value of schedule layer can't be set to a time in the past. So if
 // the value passed in is before the current time then PagerDuty will set the
 // start to the current time. Thus, we do not need to show diff if both newT and

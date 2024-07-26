@@ -8,8 +8,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server"
 	"github.com/hashicorp/terraform-plugin-mux/tf5muxserver"
 
-	"github.com/PagerDuty/terraform-provider-pagerduty/pagerduty"
-	pagerdutyplugin "github.com/PagerDuty/terraform-provider-pagerduty/pagerdutyplugin"
+	"github.com/shonun1/terraform-provider-pagerduty/pagerduty"
+	pagerdutyplugin "github.com/shonun1/terraform-provider-pagerduty/pagerdutyplugin"
 )
 
 func main() {

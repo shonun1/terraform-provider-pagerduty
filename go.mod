@@ -1,4 +1,4 @@
-module github.com/PagerDuty/terraform-provider-pagerduty
+module github.com/shonun1/terraform-provider-pagerduty
 
 go 1.20
 

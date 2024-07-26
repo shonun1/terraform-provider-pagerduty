@@ -8,10 +8,10 @@ import (
 	"testing"
 
 	"github.com/PagerDuty/go-pagerduty"
-	"github.com/PagerDuty/terraform-provider-pagerduty/util"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/id"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
+	"github.com/shonun1/terraform-provider-pagerduty/util"
 )
 
 func init() {

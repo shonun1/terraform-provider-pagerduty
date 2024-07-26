@@ -8,13 +8,13 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/PagerDuty/terraform-provider-pagerduty/util"
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/retry"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 	"github.com/heimweh/go-pagerduty/pagerduty"
+	"github.com/shonun1/terraform-provider-pagerduty/util"
 )
 
 func resourcePagerDutyService() *schema.Resource {
@@ -331,7 +331,7 @@ func customizePagerDutyServiceDiff(context context.Context, diff *schema.Resourc
 	// this input fields, and turns out that API response for Service
 	// configuration doesn't bring a representation of this HCL, which leads
 	// to a permadiff, described in
-	// https://github.com/PagerDuty/terraform-provider-pagerduty/issues/700
+	// https://github.com/shonun1/terraform-provider-pagerduty/issues/700
 	//
 	// So, bellow is the formated representation alert_grouping_parameters
 	// value when this permadiff appears and must be ignored.

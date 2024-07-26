@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/PagerDuty/go-pagerduty"
-	"github.com/PagerDuty/terraform-provider-pagerduty/util"
-	"github.com/PagerDuty/terraform-provider-pagerduty/util/apiutil"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/retry"
+	"github.com/shonun1/terraform-provider-pagerduty/util"
+	"github.com/shonun1/terraform-provider-pagerduty/util/apiutil"
 )
 
 type dataSourceIntegration struct{ client *pagerduty.Client }

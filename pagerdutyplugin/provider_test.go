@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	pd "github.com/PagerDuty/terraform-provider-pagerduty/pagerduty"
-	"github.com/PagerDuty/terraform-provider-pagerduty/util"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov5"
 	"github.com/hashicorp/terraform-plugin-mux/tf5muxserver"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
+	pd "github.com/shonun1/terraform-provider-pagerduty/pagerduty"
+	"github.com/shonun1/terraform-provider-pagerduty/util"
 )
 
 var testAccProvider = New()
