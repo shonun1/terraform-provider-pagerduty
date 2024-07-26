@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"sync"
 	"time"
@@ -73,15 +74,25 @@ func (c *Config) Client() (*pagerduty.Client, error) {
 		return nil, fmt.Errorf(invalidCreds)
 	}
 
-	var httpClient *http.Client
-	httpClient = http.DefaultClient
-	httpClient.Timeout = 2 * time.Minute
-
-	transport := http.DefaultTransport.(*http.Transport).Clone()
-	if c.InsecureTls {
-		transport.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+	httpClient := &http.Client{
+		Transport: &http.Transport{
+			DialContext: (&net.Dialer{
+				Timeout:   25 * time.Second,
+				KeepAlive: 20 * time.Second,
+			}).DialContext,
+			TLSClientConfig: &tls.Config{
+				CipherSuites: []uint16{
+					tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+				},
+			},
+			TLSHandshakeTimeout:   20 * time.Second,
+			MaxIdleConns:          0,
+			MaxIdleConnsPerHost:   500,
+			MaxConnsPerHost:       0,
+			IdleConnTimeout:       1 * time.Minute,
+			ResponseHeaderTimeout: 20 * time.Second,
+		},
 	}
-	httpClient.Transport = logging.NewTransport("PagerDuty", transport)
 
 	apiUrl := c.ApiUrl
 	if c.ApiUrlOverride != "" {
