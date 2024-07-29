@@ -98,6 +98,7 @@ func (c *Config) Client() (*pagerduty.Client, error) {
 
 	httpClient := &http.Client{
 		Transport: logging.NewTransport("PagerDuty", transport),
+		Timeout:   2 * time.Minute,
 	}
 
 	apiUrl := c.ApiUrl
